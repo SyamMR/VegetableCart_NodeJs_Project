@@ -3,7 +3,8 @@
         <form action="" id="checkout-form">
             <div class="row">
                 <div class="col-md-6 pt-4 mt-4">
-                    <h2 class="" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Enter Delivery Address</h2><br>
+                    <h2 class="" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Enter
+                        Delivery Address</h2><br>
                     <div>
                         <label for="">Address</label>
                         <input class="form-control" type="text" id="address" name="address"><br>
@@ -15,9 +16,10 @@
                     </div>
                 </div>
                 <div class="col-md-4 mt-5 pt-5">
-                    
-                    <div class="container mt-5 ml-5 checkout" >
-                        <h5 class="pl-4">Total Amount :<font color="#00FF00"> Rs {{total}}.00</h5></font>
+
+                    <div class="container mt-5 ml-5 checkout">
+                        <h5 class="pl-4">Total Amount :<font color="#00FF00"> Rs {{total}}.00</h5>
+                        </font>
                         <hr>
                         <div class="payment">
                             <p>Payment method</p>
@@ -25,7 +27,7 @@
                                 <input type="radio" name="payment-method" value="COD" checked>Cash on delivery
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="payment-method" value="ONLINE" >Online Payment
+                                <input type="radio" name="payment-method" value="ONLINE">Online Payment
                             </label>
                             <button class="btn btn-success float-right" type="submit">Checkout</button>
                         </div>
@@ -37,62 +39,62 @@
 </section>
 
 <script>
-    $('#checkout-form').submit((e)=>{
+    $('#checkout-form').submit((e) => {
         e.preventDefault()
         $.ajax({
-            url:'/place-order',
-            method:'post',
-            data:$('#checkout-form').serialize(),
-            success:(response)=>{
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
                 alert("PLease Wait, Your Order is Processing")
-                if(response.codSuccess){
-                    location.href='/order-success'
-                }else{
+                if (response.codSuccess) {
+                    location.href = '/order-success'
+                } else {
                     razorpayPayment(response)
                 }
             }
         })
     })
-    function razorpayPayment(order){
+    function razorpayPayment(order) {
         var options = {
-    "key": "rzp_test_yZBgE0mT0rc84b", // Enter the Key ID generated from the Dashboard
-    "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    "currency": "INR",
-    "name": "Vegetable Cart",
-    "description": "Transaction",
-    "image": "data:image/jpeg;base64,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",
-    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "handler": function (response){
+            "key": "rzp_test_yZBgE0mT0rc84b", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Vegetable Cart",
+            "description": "Transaction",
+            "image": "data:image/jpeg;base64,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",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
 
-        verifyPayment(response,order)
-    },
-    "prefill": {
-        "name": "John",
-        "email": "John01@gmail.com",
-        "contact": "1111111111"
-    },
-    "notes": {
-        "address": "Razorpay Corporate Office"
-    },
-    "theme": {
-        "color": "#00FF00"
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "John",
+                "email": "John01@gmail.com",
+                "contact": "1111111111"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#00FF00"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
     }
-};
-var rzp1 = new Razorpay(options);
-rzp1.open();
-    }
-    function verifyPayment(payment,order){
+    function verifyPayment(payment, order) {
         $.ajax({
-            url:'/verify-payment',
-            data:{
+            url: '/verify-payment',
+            data: {
                 payment,
                 order
             },
-            method:'post',
-            success:(response)=>{
-                if(response.status){
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
                     location.href = '/order-success'
-                }else{
+                } else {
                     alert('Payment Failed')
                 }
             }
@@ -100,25 +102,28 @@ rzp1.open();
     }
 </script>
 <style>
-    input[type=radio]{
+    input[type=radio] {
         width: 20px;
         height: 20px;
         color: #00FF00;
         border: 2px solid rgb(75, 248, 6);
     }
-    label.radio-inline{
+
+    label.radio-inline {
         display: flex;
         align-items: center;
-        
+
     }
-    .checkout{
+
+    .checkout {
         border: 1px solid;
         border-radius: 3px;
         padding: 30px;
-      
+
     }
-    .payment{
+
+    .payment {
         padding-bottom: 16px;
-          
+
     }
 </style>

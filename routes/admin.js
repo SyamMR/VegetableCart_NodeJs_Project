@@ -17,19 +17,19 @@ router.get('/', verifyLogin, function (req, res, next) {
   console.log(admin);
   productHelpers.getAllProducts().then((products) => {
     console.log(products);
-    res.render('admin/view-products', { admin: true, products, admin,title:'Admin-Products' })
+    res.render('admin/view-products', { admin: true, products, admin, title: 'Admin-Products' })
   })
 });
 router.get('/login', (req, res) => {
   if (req.session.admin) {
     res.redirect('/admin')
   } else {
-    res.render('admin/login', { "loginErr": req.session.adminLoginErr, admin: true,title:'Admin-Login' })
+    res.render('admin/login', { "loginErr": req.session.adminLoginErr, admin: true, title: 'Admin-Login' })
     req.session.adminLoginErr = false
   }
 })
 router.get('/signup', (req, res) => {
-  res.render('admin/signup', { admin: true,title:'Admin-Signup' })
+  res.render('admin/signup', { admin: true, title: 'Admin-Signup' })
 })
 router.post('/signup', (req, res) => {
   adminHelpers.doSignup(req.body).then((response) => {
@@ -57,7 +57,7 @@ router.get('/logout', (req, res) => {
 })
 router.get('/add-product', verifyLogin, function (req, res) {
   let admin = req.session.admin
-  res.render('admin/add-product', { admin: true, admin,title:'Add-Products' })
+  res.render('admin/add-product', { admin: true, admin, title: 'Add-Products' })
 })
 router.post('/add-product', (req, res) => {
   productHelpers.addProduct(req.body, (id) => {
@@ -84,7 +84,7 @@ router.get('/edit-product/:id', async (req, res) => {
   let admin = req.session.admin
   let product = await productHelpers.getProductDetails(req.params.id)
   console.log(product);
-  res.render('admin/edit-product', { product, admin: true, admin ,title:'Edit-Product'})
+  res.render('admin/edit-product', { product, admin: true, admin, title: 'Edit-Product' })
 })
 router.post('/edit-product/:id', verifyLogin, (req, res) => {
   console.log(req.params.id);

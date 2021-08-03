@@ -1,36 +1,36 @@
 <section>
-    <div class="container mt-5 pt-4">
-      <div class="row mt-3">
-        <a href="/admin/add-product " class="btn btn-warning ml-auto ">Add Product</a>
-      </div>
-        <table class="table mt-3" id="productsTable">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Catagory</th>
-      <th scope="col">Price</th>
-      <th scope="col">Description</th>
-      <th scope="col">Image</th>
-      <th scope="col">Options</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each products}}
-    <tr>
-      <td>{{this.Name}}</td>
-      <td>{{this.Catagory}}</td>
-      <td>Rs {{ this.Prize}}.00</td>
-      <td class="">{{this.Description}}</td>
-      <td><img class="" style="width: 50px;height: 50px;" src="/product-images/{{this._id}}.jpg"></td>
-      <td>
-        <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
-        <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger"
-         onclick="return confirm('Are you want to delect {{this.Name}}?')">Delete</a>
-        </td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+  <div class="container mt-5 pt-4">
+    <div class="row mt-3">
+      <a href="/admin/add-product " class="btn btn-warning ml-auto ">Add Product</a>
+      <a href="/admin/signup" class="btn btn-success ml-5">Create new admin</a>
     </div>
+    <table class="table mt-3" id="productsTable">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Catagory</th>
+          <th scope="col">Price</th>
+          <th scope="col">Description</th>
+          <th scope="col">Image</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+        <tr>
+          <td>{{this.Name}}</td>
+          <td>{{this.Catagory}}</td>
+          <td>Rs {{ this.Prize}}.00</td>
+          <td class="">{{this.Description}}</td>
+          <td><img class="" style="width: 50px;height: 50px;" src="/product-images/{{this._id}}.jpg"></td>
+          <td>
+            <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
+            <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger"
+              onclick="return confirm('Are you want to delect {{this.Name}}?')">Delete</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </section>
-
